@@ -28,7 +28,7 @@ for selected_train_data in [x_train, x_train_noise_001, x_train_noise_005, x_tra
 	for selected_model in [load_model.lenet_base, load_model.lenet_max, load_model.lenet_deep5, load_model.lenet_max_deep5, load_model.lenet_large, load_model.lenet_max_large, load_model.lenet_deep5_large, load_model.lenet_max_deep5_large, load_model.lenet_filters2, load_model.lenet_max_filters2]:
 
 		model = train.train(selected_model(), epochs, (selected_train_data, y_train_cat), (x_test, y_test_cat))
-		adv_model = train.train_regularize(selected_model(), epochs, adv_mult, adv_step, (selected_train_data, y_train), (x_test, y_test))
+		# adv_model = train.train_regularize(selected_model(), epochs, adv_mult, adv_step, (selected_train_data, y_train), (x_test, y_test))
 
 		x_test_adv = attack.generate_attack(model, x_test, attack_eps, attack_norm)
 		x_test_noise_001_adv = noise.add_noise(x_test_adv, 0.01)
@@ -40,21 +40,21 @@ for selected_train_data in [x_train, x_train_noise_001, x_train_noise_005, x_tra
 #		data_model_eval.append(attack.evaluate(model, (selected_train_data, y_train_cat)))
 		data_model_eval.append(attack.evaluate(model, (x_test, y_test_cat)))
 #		data_model_eval.append(attack.evaluate_regularize(adv_model, (selected_train_data, y_train)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test, y_test)))
 		data_model_eval.append(attack.evaluate(model, (x_test_noise_001, y_test_cat)))
 		data_model_eval.append(attack.evaluate(model, (x_test_noise_005, y_test_cat)))
 		data_model_eval.append(attack.evaluate(model, (x_test_noise_01, y_test_cat)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_001, y_test)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_005, y_test)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_01, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_001, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_005, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_01, y_test)))
 		data_model_eval.append(attack.evaluate(model, (x_test_adv, y_test_cat)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_adv, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_adv, y_test)))
 		data_model_eval.append(attack.evaluate(model, (x_test_noise_001_adv, y_test_cat)))
 		data_model_eval.append(attack.evaluate(model, (x_test_noise_005_adv, y_test_cat)))
 		data_model_eval.append(attack.evaluate(model, (x_test_noise_01_adv, y_test_cat)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_001_adv, y_test)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_005_adv, y_test)))
-		data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_01_adv, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_001_adv, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_005_adv, y_test)))
+		# data_model_eval.append(attack.evaluate_regularize(adv_model, (x_test_noise_01_adv, y_test)))
 
 		data_models.append(data_model_eval)
 		
