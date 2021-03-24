@@ -1,6 +1,6 @@
 from tensorflow.keras import Model
 import numpy as np
-from cleverhans.future.tf2.attacks import fast_gradient_method
+from cleverhans.tf2.attacks import fast_gradient_method
 
 def generate_attack(model, data, eps, norm):
 	return fast_gradient_method(model_fn=model, x=data, eps=eps, norm=norm)
